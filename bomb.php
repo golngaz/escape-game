@@ -2,30 +2,40 @@
 
 
 use App\BombDisplayer;
+use App\IniManager;
 
 require_once 'vendor/autoload.php';
 
 $displayer = new BombDisplayer();
 
-$initData = file_get_contents("init_game.ini");
-file_put_contents("game.ini", $initData);
-
-$endDate = new DateTime('+1 hour');
+$endDate = new DateTime('+10 minutes');
 //$endDate = new DateTime('+3 seconds');
+
+$config = new IniManager();
+
+$config->load('init_game.ini');
+
+$config->set('endDate', $endDate->format(DateTime::ATOM));
+$config->save('game.ini');
 
 function clear() {
     echo str_repeat(PHP_EOL, 10);
 }
 
-while ((new DateTime) < $endDate) {
+while (new DateTime < $endDate) {
     $diff = $endDate->diff(new DateTime());
 
     clear();
     $displayer->display($diff->i, $diff->s);
-    $gameIni = parse_ini_file("game.ini");
 
-    if (!($gameIni["active"] ?? true)) {
+    $config->load('game.ini');
+
+    if (!$config->get('active', true)) {
         break;
+    }
+
+    if ($config->get('endDate')) {
+        $endDate = new DateTime($config->get('endDate'));
     }
 
     sleep(1);
@@ -35,9 +45,9 @@ clear();
 
 if ((new DateTime) < $endDate) {
     echo "Bombe désamorcée";
-    shell_exec('"C:\Program Files\Mozilla Firefox\firefox.exe" ./assets/win.mp3');
-    shell_exec('"C:\Program Files\Mozilla Firefox\firefox.exe" ./assets/win.webp');
+    shell_exec('"'.$config->get('dir-firefox').'" "'.$config->get('dir-assets').'\win.mp3"');
+    shell_exec('"'.$config->get('dir-firefox').'" "'.$config->get('dir-assets').'\win.webp"');
 } else {
     echo "Boom !";
-    shell_exec('"C:\Program Files\Mozilla Firefox\firefox.exe" ./assets/boom.mp3');
+    shell_exec('"'.$config->get('dir-firefox').'" "'.$config->get('dir-assets').'\boom.mp3"');
 }

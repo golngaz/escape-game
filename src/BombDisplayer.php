@@ -21,7 +21,7 @@ class BombDisplayer
 
         echo $this->implode([
             $this->getAscii($arrayMinutes[0]),
-            $this->getAscii($arrayMinutes[0]),
+            $this->getAscii($arrayMinutes[1]),
             $this->getAscii('\''),
             $this->getAscii($arraySeconds[0]),
             $this->getAscii($arraySeconds[1]),
