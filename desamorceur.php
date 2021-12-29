@@ -19,7 +19,12 @@ $changeTime = function (?string $phrase) use ($config)
         return;
     }
 
-    $timeAdd = new DateTime($config->get('endDate'));
+    $timeAdd = new DateTimeImmutable($config->get('endDate'));
+
+    // On ne fait rien à moins de 10 min de la fin (sauf les ajouts)
+    if ((new DateTime) > $timeAdd->modify('-10 minutes') && $timeAdd->modify($phrase) < $timeAdd) {
+        return;
+    }
 
     $config->set('endDate', $timeAdd->modify($phrase)->format(DateTime::ATOM));
 
@@ -27,9 +32,9 @@ $changeTime = function (?string $phrase) use ($config)
 };
 
 // chiant
-ini_set('output_buffering','on');
-ini_set('zlib.output_compression', 0);
-ob_implicit_flush();
+//ini_set('output_buffering','on');
+//ini_set('zlib.output_compression', 0);
+//ob_implicit_flush();
 
 while (true) {
     $line = trim(readline($defusal->key() ? $defusal->key().'> ' : '> '));
@@ -78,8 +83,4 @@ while (true) {
 
     // chiant bis
     echo PHP_EOL;
-//    ob_flush();
-//    flush();
-    sleep(1);
-
 }
