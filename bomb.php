@@ -8,15 +8,21 @@ require_once 'vendor/autoload.php';
 
 $displayer = new BombDisplayer();
 
-$endDate = new DateTime('+10 minutes');
-//$endDate = new DateTime('+3 seconds');
 
 $config = new IniManager();
 
-$config->load('init_game.ini');
+if (($argv[1] ?? '') === 'init') {
+    $config->load('init_game.ini');
 
-$config->set('endDate', $endDate->format(DateTime::ATOM));
-$config->save('game.ini');
+    $endDate = new DateTime('+10 minutes');
+
+    $config->set('endDate', $endDate->format(DateTime::ATOM));
+    $config->save('game.ini');
+} else {
+    $config->load('game.ini');
+    $endDate = new DateTime($config->get('endDate'));
+}
+
 
 function clear() {
     echo str_repeat(PHP_EOL, 10);
@@ -50,4 +56,5 @@ if ((new DateTime) < $endDate) {
 } else {
     echo "Boom !";
     shell_exec('"'.$config->get('dir-firefox').'" "'.$config->get('dir-assets').'\boom.mp3"');
+    shell_exec('"'.$config->get('dir-firefox').'" https://images.alphacoders.com/528/thumb-1920-52831.jpg');
 }
