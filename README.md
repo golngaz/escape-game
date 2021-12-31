@@ -1,11 +1,13 @@
 # synopsis
 
 Vous entrez dans le laboratoire gouvernemantal de Cavaillon afin de désactiver une bombe IEM 
-déclenchée par un des scientifiques qui s'est donné la mort juste après l'avoir déclenchée
+conçue par un des scientifiques qui s'est donné la mort juste après l'avoir déclenchée.
 
 ## Kit de désamorçage
 
-Vous trouverez à votre gauche, un manuel guide du kit de désamorçage
+Vous trouverez à votre gauche, un manuel guide du kit de désamorçage, ainsi qu'un ordinateur et le logiciel en question.
+Vous avez libre accès à internet donc ne vous en privez pas. Nous restons à votre disposition en cas de problème,
+ mais nous savons que vous êtes des professionnels qualifiés, et que cette petite bombe ne vous effraie pas le moins du monde
 
 ##todo
 
