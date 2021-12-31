@@ -48,7 +48,7 @@ class Defusal
         }
 
         // Oui j'aime les clés
-        if (!array_key_exists($key, array_keys($this->keys))) {
+        if (!array_key_exists($key, $this->keys)) {
             return false;
         }
 

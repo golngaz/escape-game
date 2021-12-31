@@ -66,12 +66,11 @@ while (true) {
                 $config->save('game.ini');
 
                 echo 'Opération effectuée';
-            } else {
-
-                $changeTime('-1 minute');
-                echo 'Goodbye';
-                exit;
+                break;
             }
+
+            $changeTime('-3 minute');
+            echo 'BIIIP BOOOP ERRORRRR';
 
             break;
 
