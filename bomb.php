@@ -14,7 +14,7 @@ $config = new IniManager();
 if (($argv[1] ?? '') === 'init') {
     $config->load('init_game.ini');
 
-    $endDate = new DateTime('+25 minutes');
+    $endDate = new DateTime('+35 minutes');
 
     $config->set('endDate', $endDate->format(DateTime::ATOM));
     $config->save('game.ini');

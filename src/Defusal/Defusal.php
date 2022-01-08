@@ -27,6 +27,14 @@ class Defusal
         '5' => '01000001', // A
     ];
 
+    private $timeSaving = [
+        '1' => '+20 minutes',
+        '2' => '+15 minutes',
+        '3' => '+15 minutes',
+        '4' => '+10 minutes',
+        '5' => '+5 minutes',
+    ];
+
     /**
      * @var IniManager
      */
@@ -72,11 +80,7 @@ class Defusal
 
             echo 'key part is : '.$this->codes[$this->activeKey];
 
-            if ($this->activeKey === '1') {
-                return '+15 minutes';
-            }
-
-            return '+5 minutes';
+            return $this->timeSaving[$this->activeKey];
         }
 
         echo 'Erreur, le mot de passe est invalide';
