@@ -38,4 +38,5 @@ Chaque bonne réponse renvoie un octet de bits pour la réponse finale
   * Mirroir savon
   * Magnet chauffage
   * Mug (coller dessous)
+  * https://classic.minecraft.net/?join=5C5Dr6b7EUip63xX
 * Carnet du savant
